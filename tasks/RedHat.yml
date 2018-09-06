@@ -5,12 +5,13 @@
   yum_repository:
     name: influxdb
     description: InfluxDB Repository - RHEL $releasever
-    baseurl: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
     gpgcheck: yes
     gpgkey: https://repos.influxdata.com/influxdb.key
+    state: absent
 
 - name: "Install telegraf package | RedHat"
   yum:
-    name: "telegraf-{{ telegraf_agent_version }}"
-    state: installed
+    name: "telegraf"
+    state: absent
   notify: "Restart Telegraf"
+
